@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI CHAT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="{{url_for('index')}}">AI chat</a>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <section>
+                <h2>AIへ質問</h2>
+                <form action="{{ url_for('index') }}" method="POST">
+                    <div>
+                        <textarea name="user_message" cols="60" rows="6" maxlength="300" placeholder="メッセージを入力してください"
+                            required>{{ old_message }}</textarea>
+                    </div>
+                    <div class="submit-btn">
+                        <button type="submit" style="padding: 10px 20px;">質問する</button>
+                    </div>
+                </form>
+            </section>
+            <section>
+                {% if user_message %}
+                <hr>
+                <p class="user">あなた: {{ user_message }}</p>
+                <p class="ai">AI: {{ ai_response }}</p>
+                {% endif %}
+            </section>
+        </article>
+    </main>
+    <footer>
+        <p class="copyright">&copy; Kate Chat All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
